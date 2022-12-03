@@ -4,12 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ccb26790-e604-4fbb-bede-28eed1813284" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../personal-finance/expences.py" afterDir="false" />
+    <list default="true" id="ccb26790-e604-4fbb-bede-28eed1813284" name="Changes" comment="personal-finance: get base code from gastos">
       <change afterPath="$PROJECT_DIR$/../personal-finance/requirements.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../personal-finance/tests/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../personal-finance/tests/tests_expenses.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../personal-finance/tests/test_expenses.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../personal-finance/expences.py" beforeDir="false" afterPath="$PROJECT_DIR$/../personal-finance/expenses.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../personal-finance/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../personal-finance/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -80,7 +80,14 @@
       <option name="project" value="LOCAL" />
       <updated>1670087634455</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="personal-finance: get base code from gastos">
+      <created>1670108209514</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1670108209514</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -96,6 +103,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="versioning some code that I've been coding on" />
-    <option name="LAST_COMMIT_MESSAGE" value="versioning some code that I've been coding on" />
+    <MESSAGE value="personal-finance: get base code from gastos" />
+    <option name="LAST_COMMIT_MESSAGE" value="personal-finance: get base code from gastos" />
   </component>
 </project>

@@ -1,10 +1,10 @@
 import datetime
 
-from expences import Expences
+from expenses import Expenses
 
 
 def main():
-    expense = Expences()
+    expense = Expenses()
     while True:
         print('\n---\nDeseja cadastrar um ganho ou gasto?\nver extrato?\ndigite 0 para sair')
         command = input()

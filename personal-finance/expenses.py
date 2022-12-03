@@ -19,7 +19,7 @@ class Statement:
         return f"{self.data.isoformat()} - {self.operacao.value} - {self.valor} - {self.tipo} - {self.obs}"
 
 
-class Expences:
+class Expenses:
     def __init__(self):
         self.statements = []
 
