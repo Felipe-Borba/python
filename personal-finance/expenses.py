@@ -8,65 +8,56 @@ class Operation(Enum):
 
 
 class Statement:
-    def __init__(self, operacao: Operation, data: date, valor: float, tipo='', obs=''):
-        self.operacao = operacao
-        self.data = data
-        self.valor = valor
-        self.tipo = tipo
-        self.obs = obs
+    def __init__(self, operation: Operation, operation_date: date, value: float, kind='', note=''):
+        self.operation = operation
+        self.operation_date = operation_date
+        self.value = value
+        self.kind = kind.lower().strip()
+        self.note = note.strip()
 
     def __str__(self):
-        return f"{self.data.isoformat()} - {self.operacao.value} - {self.valor} - {self.tipo} - {self.obs}"
+        return f"{self.operation_date.isoformat()} - {self.operation.value} - {self.value} - {self.kind} - {self.note}"
 
 
 class Expenses:
     def __init__(self):
         self.statements = []
 
-    def _push_statement(self, ano, mes, dia, valor, tipo, obs, operacao: Operation):
-        statement = Statement(operacao=operacao, data=date(year=int(ano), month=int(mes), day=int(dia)),
-                              valor=float(valor),
-                              tipo=str(tipo).lower().strip(), obs=str(obs).strip())
+    def _push_statement(self, operation_date: date, value: float, kind: str, note: str, operation: Operation):
+        statement = Statement(operation, operation_date, value, kind, note)
         self.statements.append(statement)
 
-    def add_expense(self, ano, mes, dia, valor, tipo, obs):
-        self._push_statement(ano, mes, dia, valor, tipo, obs, Operation.OUT)
+    def add_expense(self, operation_date: date, value: float, kind: str, note: str):
+        self._push_statement(operation_date, value, kind, note, Operation.OUT)
 
-    def add_income(self, ano, mes, dia, valor, tipo, obs):
-        self._push_statement(ano, mes, dia, valor, tipo, obs, Operation.IN)
+    def add_income(self, operation_date: date, value: float, kind: str, note: str):
+        self._push_statement(operation_date, value, kind, note, Operation.IN)
 
-    # TODO change method to __str__ and return string
-    def print_extrato(self):
+    def __str__(self):
         if len(self.statements) == 0:
-            print('nenhum dado cadastrado')
-            return
+            return 'nenhum dado cadastrado'
 
         temp = ''
         for statement in self.statements:
             temp += statement.__str__()
             temp += '\n'
-        print(temp)
+        return temp
 
     def get_valor_total(self):
         total = 0
         for statement in self.statements:
-            if statement.operacao == Operation.IN:
-                total += statement.valor
+            if statement.operation == Operation.IN:
+                total += statement.value
             else:
-                total -= statement.valor
+                total -= statement.value
         return total
 
     def get_gastos_por_tipo(self):
         expenses = {}
         for statement in self.statements:
-            if statement.operacao == Operation.OUT:
-                if statement.tipo in expenses.keys():
-                    expenses[statement.tipo] += statement.valor
+            if statement.operation == Operation.OUT:
+                if statement.kind in expenses.keys():
+                    expenses[statement.kind] += statement.value
                 else:
-                    expenses[statement.tipo] = statement.valor
+                    expenses[statement.kind] = statement.value
         return expenses
-
-    def print_gastos_por_tipo(self):
-        gastos = self.get_gastos_por_tipo()
-        for gasto in gastos:
-            print(f"{gasto}={gastos[gasto]}")

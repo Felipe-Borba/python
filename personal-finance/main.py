@@ -1,4 +1,5 @@
 import datetime
+from datetime import date
 
 from expenses import Expenses
 
@@ -18,23 +19,25 @@ def main():
                     day, montante, month, obs, tipo, year = get_input_value()
 
                     validate_date(year, month, day)
+                    input_date = date(year=int(year), month=int(month), day=int(day))
 
-                    expense.add_income(year, month, day, montante, tipo, obs)
+                    expense.add_income(input_date, montante, tipo, obs)
                 case 'gasto':
                     day, montante, month, obs, tipo, year = get_input_value()
 
                     validate_date(year, month, day)
+                    input_date = date(year=int(year), month=int(month), day=int(day))
 
-                    expense.add_expense(year, month, day, montante, tipo, obs)
+                    expense.add_expense(input_date, montante, tipo, obs)
                 case 'extrato':
-                    expense.print_extrato()
+                    print(expense)
                 case _:
                     print('Entrada invalida')
                     pass
 
             print('Valor total em conta:', expense.get_valor_total())
             print('Total de gastos por Tipo:')
-            expense.print_gastos_por_tipo()
+            print_gastos_por_tipo(expense)
 
         except:
             pass
@@ -61,6 +64,12 @@ def validate_date(year, month, day):
     except:
         print("Data invalida")
         raise
+
+
+def print_gastos_por_tipo(gastos):
+    gastos = gastos.get_gastos_por_tipo()
+    for gasto in gastos:
+        print(f"{gasto}={gastos[gasto]}")
 
 
 if __name__ == '__main__':

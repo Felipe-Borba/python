@@ -4,12 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ccb26790-e604-4fbb-bede-28eed1813284" name="Changes" comment="personal-finance: get base code from gastos">
+    <list default="true" id="ccb26790-e604-4fbb-bede-28eed1813284" name="Changes" comment="">
       <change afterPath="$PROJECT_DIR$/../personal-finance/requirements.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../personal-finance/tests/__init__.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../personal-finance/tests/test_expenses.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../personal-finance/expences.py" beforeDir="false" afterPath="$PROJECT_DIR$/../personal-finance/expenses.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../personal-finance/expenses.py" beforeDir="false" afterPath="$PROJECT_DIR$/../personal-finance/expenses.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../personal-finance/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../personal-finance/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
