@@ -1,4 +1,4 @@
-# Generate report
+# Generate Report
 
 Default coverage
 
@@ -10,4 +10,12 @@ Generate html report
 
 ```bash
 pytest --cov-report html
+```
+
+# Setup Project
+
+on root folder run
+
+```bash
+pip install -r requirements.txt
 ```

@@ -1,5 +1,7 @@
+import datetime
 from datetime import date
 from enum import Enum
+from dateutil.relativedelta import relativedelta
 
 
 class Operation(Enum):
@@ -23,16 +25,22 @@ class Expenses:
     def __init__(self):
         self.statements = []
 
-    def _push_statement(self, operation_date: date, value: float, kind: str, note: str, operation: Operation):
+    def _push_statement(self, operation_date: date, value: float, kind: str, note: str, operation: Operation,
+                        instalments: int):
+        if instalments < 1:
+            return
+
         value = abs(value)
         statement = Statement(operation, operation_date, value, kind, note)
         self.statements.append(statement)
+        next_month = operation_date + relativedelta(months=1)
+        self._push_statement(next_month, value, kind, note, operation, instalments - 1)
 
-    def add_spending(self, operation_date: date, value: float, kind='', note=''):
-        self._push_statement(operation_date, value, kind, note, Operation.OUT)
+    def add_spending(self, operation_date: date, value: float, kind='', note='', instalments=1):
+        self._push_statement(operation_date, value, kind, note, Operation.OUT, instalments)
 
-    def add_income(self, operation_date: date, value: float, kind='', note=''):
-        self._push_statement(operation_date, value, kind, note, Operation.IN)
+    def add_income(self, operation_date: date, value: float, kind='', note='', instalments=1):
+        self._push_statement(operation_date, value, kind, note, Operation.IN, instalments)
 
     def get_balance(self):
         total = 0
@@ -52,6 +60,20 @@ class Expenses:
                 else:
                     expenses[statement.kind] = statement.value
         return expenses
+
+    def get_balance_by_month(self):
+        balance = {}
+
+        for statement in self.statements:
+            month = statement.operation_date.month
+            if month not in balance.keys():
+                balance[month] = statement.value
+            elif statement.operation == Operation.IN:
+                balance[month] += statement.value
+            else:
+                balance[month] -= statement.value
+
+        return balance
 
     def __str__(self):
         if len(self.statements) == 0:
