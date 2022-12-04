@@ -27,10 +27,9 @@ class Expenses:
         statement = Statement(operation, operation_date, value, kind, note)
         self.statements.append(statement)
 
-    def add_expense(self, operation_date: date, value: float, kind='', note=''):
+    def add_spending(self, operation_date: date, value: float, kind='', note=''):
         self._push_statement(operation_date, value, kind, note, Operation.OUT)
 
-    # TODO rename add_spending
     def add_income(self, operation_date: date, value: float, kind='', note=''):
         self._push_statement(operation_date, value, kind, note, Operation.IN)
 

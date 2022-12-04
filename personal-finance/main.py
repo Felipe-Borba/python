@@ -28,7 +28,7 @@ def main():
                     validate_date(year, month, day)
                     input_date = date(year=int(year), month=int(month), day=int(day))
 
-                    expense.add_expense(input_date, montante, tipo, obs)
+                    expense.add_spending(input_date, montante, tipo, obs)
                 case 'extrato':
                     print(expense)
                 case _:

@@ -21,7 +21,7 @@ class TestExpenses:
     def test_given_expenses_when_add_spending_then_push_in_statement_array(self):
         expenses = Expenses()
 
-        expenses.add_expense(self.today, 555, 'some kind', 'some note')
+        expenses.add_spending(self.today, 555, 'some kind', 'some note')
 
         assert len(expenses.statements) == 1
         statement = expenses.statements[0]
@@ -42,7 +42,7 @@ class TestExpenses:
     def test_given_expenses_with_incomes_and_spending_when_get_balance_then_returns_correct_value_sum(self):
         expenses = Expenses()
         expenses.add_income(operation_date=self.today, value=500.99, kind='salary', note='na')
-        expenses.add_expense(operation_date=self.today, value=50.99, kind='milk', note='cat milk')
+        expenses.add_spending(operation_date=self.today, value=50.99, kind='milk', note='cat milk')
 
         total = expenses.get_balance()
 
@@ -52,10 +52,10 @@ class TestExpenses:
             self):
         expenses = Expenses()
         expenses.add_income(operation_date=self.today, value=500.99, kind='salary', note='na')
-        expenses.add_expense(operation_date=self.today, value=50, kind='milk', note='cat')
-        expenses.add_expense(operation_date=self.today, value=50, kind='milk', note='wolf')
-        expenses.add_expense(operation_date=self.today, value=40, kind='ball', note='wolf')
-        expenses.add_expense(operation_date=self.today, value=40, kind='ball', note='cat')
+        expenses.add_spending(operation_date=self.today, value=50, kind='milk', note='cat')
+        expenses.add_spending(operation_date=self.today, value=50, kind='milk', note='wolf')
+        expenses.add_spending(operation_date=self.today, value=40, kind='ball', note='wolf')
+        expenses.add_spending(operation_date=self.today, value=40, kind='ball', note='cat')
 
         result = expenses.get_expenses_by_kind()
 
