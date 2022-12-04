@@ -35,7 +35,7 @@ def main():
                     print('Entrada invalida')
                     pass
 
-            print('Valor total em conta:', expense.get_valor_total())
+            print('Valor total em conta:', expense.get_balance())
             print('Total de gastos por Tipo:')
             print_gastos_por_tipo(expense)
 
@@ -67,7 +67,7 @@ def validate_date(year, month, day):
 
 
 def print_gastos_por_tipo(gastos):
-    gastos = gastos.get_gastos_por_tipo()
+    gastos = gastos.get_expenses_by_kind()
     for gasto in gastos:
         print(f"{gasto}={gastos[gasto]}")
 

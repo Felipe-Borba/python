@@ -8,7 +8,7 @@ class Operation(Enum):
 
 
 class Statement:
-    def __init__(self, operation: Operation, operation_date: date, value: float, kind='', note=''):
+    def __init__(self, operation: Operation, operation_date: date, value: float, kind: str, note: str):
         self.operation = operation
         self.operation_date = operation_date
         self.value = value
@@ -27,11 +27,31 @@ class Expenses:
         statement = Statement(operation, operation_date, value, kind, note)
         self.statements.append(statement)
 
-    def add_expense(self, operation_date: date, value: float, kind: str, note: str):
+    def add_expense(self, operation_date: date, value: float, kind='', note=''):
         self._push_statement(operation_date, value, kind, note, Operation.OUT)
 
-    def add_income(self, operation_date: date, value: float, kind: str, note: str):
+    # TODO rename add_spending
+    def add_income(self, operation_date: date, value: float, kind='', note=''):
         self._push_statement(operation_date, value, kind, note, Operation.IN)
+
+    def get_balance(self):
+        total = 0
+        for statement in self.statements:
+            if statement.operation == Operation.IN:
+                total += statement.value
+            else:
+                total -= statement.value
+        return total
+
+    def get_expenses_by_kind(self):
+        expenses = {}
+        for statement in self.statements:
+            if statement.operation == Operation.OUT:
+                if statement.kind in expenses.keys():
+                    expenses[statement.kind] += statement.value
+                else:
+                    expenses[statement.kind] = statement.value
+        return expenses
 
     def __str__(self):
         if len(self.statements) == 0:
@@ -42,22 +62,3 @@ class Expenses:
             temp += statement.__str__()
             temp += '\n'
         return temp
-
-    def get_valor_total(self):
-        total = 0
-        for statement in self.statements:
-            if statement.operation == Operation.IN:
-                total += statement.value
-            else:
-                total -= statement.value
-        return total
-
-    def get_gastos_por_tipo(self):
-        expenses = {}
-        for statement in self.statements:
-            if statement.operation == Operation.OUT:
-                if statement.kind in expenses.keys():
-                    expenses[statement.kind] += statement.value
-                else:
-                    expenses[statement.kind] = statement.value
-        return expenses
