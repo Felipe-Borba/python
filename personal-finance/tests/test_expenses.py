@@ -60,3 +60,19 @@ class TestExpenses:
         result = expenses.get_expenses_by_kind()
 
         assert result == {'milk': 100, 'ball': 80}
+
+    def test_given_expenses_when_add_income_with_negative_value_should_add_statement_with_abs_value(self):
+        expenses = Expenses()
+
+        expenses.add_income(operation_date=self.today, value=-100, kind='salary', note='senegal')
+
+        statement = expenses.statements[0]
+        assert statement.value == 100
+
+    def test_given_expenses_when_add_spending_with_negative_value_should_add_statement_with_abs_value(self):
+        expenses = Expenses()
+
+        expenses.add_spending(operation_date=self.today, value=-300, kind='salary', note='senegal')
+
+        statement = expenses.statements[0]
+        assert statement.value == 300

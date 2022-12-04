@@ -24,6 +24,7 @@ class Expenses:
         self.statements = []
 
     def _push_statement(self, operation_date: date, value: float, kind: str, note: str, operation: Operation):
+        value = abs(value)
         statement = Statement(operation, operation_date, value, kind, note)
         self.statements.append(statement)
 

@@ -60,7 +60,7 @@ def get_input_value():
 def validate_date(year, month, day):
     try:
         date_str = year + '-' + month + '-' + day
-        datetime.strptime(date_str, '%Y-%m-%d')
+        datetime.datetime.strptime(date_str, '%Y-%m-%d')
     except:
         print("Data invalida")
         raise
