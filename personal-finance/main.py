@@ -23,13 +23,15 @@ def handle_user_input(expenses: Expenses):
                 case '1':
                     [value, kind, note] = prompt_user_expense()
                     user_date = prompt_date()
+                    instalment = prompt_instalments()
 
-                    expenses.add_income(user_date, value, kind, note)
+                    expenses.add_income(user_date, value, kind, note, instalment)
                 case '2':
                     [value, kind, note] = prompt_user_expense()
                     user_date = prompt_date()
+                    instalment = prompt_instalments()
 
-                    expenses.add_spending(user_date, value, kind, note)
+                    expenses.add_spending(user_date, value, kind, note, instalment)
                 case '3':
                     balance = expenses.get_balance_by_month()
                     print(balance)
@@ -43,6 +45,18 @@ def handle_user_input(expenses: Expenses):
                     print('Opção Inválida')
         except Exception as error:
             print(error)
+
+
+def prompt_instalments():
+    should_add_instalment = input('Adicionar recorrencia? [y/n]')
+    if should_add_instalment != 'y':
+        return 1
+
+    try:
+        raw_instalment = input('Digite a quantidade de recorencia em mês')
+        return int(raw_instalment)
+    except Exception:
+        raise ValueError('quantidade inválida')
 
 
 def prompt_date():
