@@ -47,6 +47,21 @@ class TestMain:
         expected_output.append('bye')
         assert print_values == expected_output
 
+    def test_handle_user_input_when_user_sees_saldo_por_mes_then_return_empty_array(self, monkeypatch):
+        input_values = ['3', '0']
+        print_values = []
+        monkeypatch.setattr(builtins, 'input', lambda: input_values.pop(0))
+        monkeypatch.setattr(builtins, 'print', lambda s: print_values.append(s.__str__()))
+
+        expense = Expenses()
+        handle_user_input(expense)
+
+        expected_output = [i for i in self.menu]
+        expected_output.append('{}')
+        expected_output += self.menu
+        expected_output.append('bye')
+        assert print_values == expected_output
+
     def test_handle_user_input_when_add_new_income_then_add_in_extrato(self, monkeypatch):
         input_values = ['1', '100', 'kind', 'note', '25-12-2022', 'n', '4', '0']
         print_values = []
