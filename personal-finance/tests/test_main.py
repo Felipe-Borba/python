@@ -47,6 +47,21 @@ class TestMain:
         expected_output.append('bye')
         assert print_values == expected_output
 
+    def test_handle_user_input_when_user_sees_valor_total_then_should_return_total_balance(self, monkeypatch):
+        input_values = ['5', '0']
+        print_values = []
+        monkeypatch.setattr(builtins, 'input', lambda s='': input_values.pop(0))
+        monkeypatch.setattr(builtins, 'print', lambda s, a='': print_values.append(f"{s}{a}"))
+
+        expense = Expenses()
+        handle_user_input(expense)
+
+        expected_output = [i for i in self.menu]
+        expected_output.append('Valor total em conta:\n0')
+        expected_output += self.menu
+        expected_output.append('bye')
+        assert print_values == expected_output
+
     def test_handle_user_input_when_user_sees_saldo_por_mes_then_return_empty_array(self, monkeypatch):
         input_values = ['3', '0']
         print_values = []
