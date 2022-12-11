@@ -62,6 +62,36 @@ class TestMain:
         expected_output.append('bye')
         assert print_values == expected_output
 
+    def test_handle_user_input_when_user_sees_gastos_por_tipo_then_should_call_expense_by_type(self, monkeypatch):
+        input_values = ['6', '0']
+        print_values = []
+        monkeypatch.setattr(builtins, 'input', lambda s='': input_values.pop(0))
+        monkeypatch.setattr(builtins, 'print', lambda s, a='': print_values.append(f"{s}{a}"))
+
+        expense = Expenses()
+        handle_user_input(expense)
+
+        expected_output = [i for i in self.menu]
+        expected_output.append('Total de gastos por Tipo:\n{}')
+        expected_output += self.menu
+        expected_output.append('bye')
+        assert print_values == expected_output
+
+    def test_handle_user_input_input_when_user_digit_invalid_input_then_return_invalid_option(self, monkeypatch):
+        input_values = ['invalido', '0']
+        print_values = []
+        monkeypatch.setattr(builtins, 'input', lambda: input_values.pop(0))
+        monkeypatch.setattr(builtins, 'print', lambda s: print_values.append(s.__str__()))
+
+        expense = Expenses()
+        handle_user_input(expense)
+
+        expected_output = [i for i in self.menu]
+        expected_output.append('Opção Inválida')
+        expected_output += self.menu
+        expected_output.append('bye')
+        assert print_values == expected_output
+
     def test_handle_user_input_when_user_sees_saldo_por_mes_then_return_empty_array(self, monkeypatch):
         input_values = ['3', '0']
         print_values = []

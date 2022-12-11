@@ -89,12 +89,6 @@ def prompt_user_expense():
     return value, kind, note
 
 
-def print_gastos_por_tipo(gastos):
-    gastos = gastos.get_expenses_by_kind()
-    for gasto in gastos:
-        print(f"{gasto}={gastos[gasto]}")
-
-
 if __name__ == '__main__':
     expense = Expenses()
     handle_user_input(expense)
