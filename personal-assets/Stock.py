@@ -3,7 +3,7 @@ import datetime
 
 class Stock:
     def __init__(self, ticket: str):
-        self.ticket = ticket.upper()
+        self.ticket = ticket.upper().strip()
         self.operations = []
 
     def add_operation(self, price: float, operation_type: str, quantity: int, date: datetime.date):
